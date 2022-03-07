@@ -1,17 +1,71 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1>Tabla de usuarios</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">RUN</th>
+          <th scope="col">Nacimiento</th>
+          <th scope="col">Edad</th>
+        </tr>
+      </thead>
+      <tbody id="myTable"></tbody>
+    </table>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
 export default {
   name: "App",
-  components: {
-    HelloWorld,
+  data() {
+    return {
+      myData: [
+        {
+          nombre: "José",
+          apellido: "Perez",
+          run: 123456 - 2,
+          nacimiento: "12-04-67",
+          edad: 52,
+        },
+        {
+          nombre: "María",
+          apellido: "Rodríguez",
+          run: 65432 - 1,
+          nacimiento: "30-11-90",
+          edad: 29,
+        },
+        {
+          nombre: "Manuel",
+          apellido: "Patiño",
+          run: 14223456 - 6,
+          nacimiento: "02-12-59",
+          edad: 60,
+        },
+      ],
+    };
+  },
+  components: {},
+  methods: {
+    renderData() {
+      const myTable = document.getElementById("myTable");
+      this.myData.map((a) => {
+        myTable.innerHTML += `<tr>
+          <th scope="row">${this.myData.indexOf(a) + 1}</th>
+          <td>${a.nombre}</td>
+          <td>${a.apellido}</td>
+          <td>${a.run}</td>
+          <td>${a.nacimiento}</td>
+          <td>${a.edad}</td>
+
+        </tr>`;
+      });
+    },
+  },
+  mounted() {
+    this.renderData();
   },
 };
 </script>
