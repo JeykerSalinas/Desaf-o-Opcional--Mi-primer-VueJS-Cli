@@ -1,19 +1,29 @@
 <template>
   <div id="app">
-    <h1>Tabla de usuarios</h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Apellido</th>
-          <th scope="col">RUN</th>
-          <th scope="col">Nacimiento</th>
-          <th scope="col">Edad</th>
-        </tr>
-      </thead>
-      <tbody id="myTable"></tbody>
-    </table>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>Tabla de usuarios</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">RUN</th>
+                <th scope="col">Nacimiento</th>
+                <th scope="col">Edad</th>
+              </tr>
+            </thead>
+            <tbody id="myTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
