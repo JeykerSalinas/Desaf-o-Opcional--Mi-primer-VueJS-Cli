@@ -13,13 +13,28 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">RUN</th>
-                <th scope="col">Nacimiento</th>
+                <th scope="col">Apellido Materno</th>
+                <th scope="col">Apellido Paterno</th>
                 <th scope="col">Edad</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Estado Civil</th>
               </tr>
             </thead>
-            <tbody id="myTable"></tbody>
+            <tbody id="myTable">
+              <tr v-for="(trabajador, i) in myData" :key="i">
+                <td>{{ i + 1 }}</td>
+                <td>{{ trabajador.nombre }}</td>
+                <td>{{ trabajador.apellidoMaterno }}</td>
+                <td>{{ trabajador.apellidoPaterno }}</td>
+                <td>{{ trabajador.edad }}</td>
+                <td>{{ trabajador.telefono }}</td>
+                <td>{{ trabajador.direccion }}</td>
+                <td>{{ trabajador.correo }}</td>
+                <td>{{ trabajador.estadoCivil }}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
@@ -32,50 +47,24 @@ export default {
   name: "App",
   data() {
     return {
-      myData: [
-        {
-          nombre: "José",
-          apellido: "Perez",
-          run: 123456 - 2,
-          nacimiento: "12-04-67",
-          edad: 52,
-        },
-        {
-          nombre: "María",
-          apellido: "Rodríguez",
-          run: 65432 - 1,
-          nacimiento: "30-11-90",
-          edad: 29,
-        },
-        {
-          nombre: "Manuel",
-          apellido: "Patiño",
-          run: 14223456 - 6,
-          nacimiento: "02-12-59",
-          edad: 60,
-        },
-      ],
+      myData: [],
     };
   },
-  components: {},
-  methods: {
-    renderData() {
-      const myTable = document.getElementById("myTable");
-      this.myData.map((a) => {
-        myTable.innerHTML += `<tr>
-          <th scope="row">${this.myData.indexOf(a) + 1}</th>
-          <td>${a.nombre}</td>
-          <td>${a.apellido}</td>
-          <td>${a.run}</td>
-          <td>${a.nacimiento}</td>
-          <td>${a.edad}</td>
-
-        </tr>`;
-      });
-    },
+  created() {
+    this.getData();
   },
-  mounted() {
-    this.renderData();
+  methods: {
+    async getData() {
+      try {
+        const URL = "./data.json";
+        const request = await fetch(URL);
+        const data = await request.json();
+        this.myData = data;
+        console.log(this.myData);
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };
 </script>
